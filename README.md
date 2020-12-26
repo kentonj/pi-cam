@@ -14,8 +14,8 @@ raspberry pi live feed camera using flask and redis
     - `sudo sh get-docker.sh`
   - docker-compose
     - `sudo pip3 -v install docker-compose`
-- Run the setup script to make the picamera accessible by docker
-  - `./setup.sh`
+- Run the setup script to make the picamera accessible by docker (must be `sudo`!!!)
+  - `sudo ./setup.sh`
 - Run the service!
   - `docker-compose up`
 - This will start 3 services:

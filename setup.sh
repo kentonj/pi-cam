@@ -6,6 +6,7 @@ if [ ! -f /etc/udev/rules.d/99-camera.rules ]; then
 fi
 
 # allow other users (docker) to access the picamera
-if [ ! grep -Fxq 'SUBSYSTEM=="vchiq",MODE="0666"' /etc/udev/rules.d/99-camera.rules]; then
+if ! grep -Fxq 'SUBSYSTEM=="vchiq",MODE="0666"' /etc/udev/rules.d/99-camera.rules
+then
     echo 'SUBSYSTEM=="vchiq",MODE="0666"' >> /etc/udev/rules.d/99-camera.rules
 fi
