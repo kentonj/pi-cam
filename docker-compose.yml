@@ -1,0 +1,38 @@
+version: '3.7'
+
+x-common-variables: &common-variables
+  REDIS_HOST: redis
+  REDIS_PORT: 6379
+
+services:
+  redis:
+    image: redis:6.0
+    ports:
+      - "6379:6379"
+    restart: always
+  recorder:
+    build:
+      context: ./
+    command: record
+    volumes:
+      - "/opt/vc:/opt/vc"
+    environment:
+      <<: *common-variables
+      LD_LIBRARY_PATH: /opt/vc/lib
+    devices:
+      - "/dev/vchiq:/dev/vchiq"
+    privileged: true
+    restart: always
+    depends_on:
+      - redis
+  webserver:
+    build:
+      context: ./
+    command: serve
+    environment:
+      <<: *common-variables
+    ports:
+      - "80:8080"
+    restart: always
+    depends_on:
+      - recorder
