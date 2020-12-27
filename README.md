@@ -1,5 +1,5 @@
 # pi-cam
-raspberry pi live feed camera using flask and redis
+raspberry pi live feed using the raspberry pi camera module, redis and flask.
 
 ## Running the Service
 
@@ -18,6 +18,7 @@ raspberry pi live feed camera using flask and redis
   - `sudo ./setup.sh`
 - Run the service!
   - `docker-compose up -d`
+  - this will take a while to build the first time -- installing gevent (necessary for keep-alive requests) takes a really long time, but don't fret, just let it run.
 - This will start 3 services:
   - `redis`: this is used for in-memory video frame stream
   - `recorder`: this captures a continuous feed from the raspberry pi camera, and publishes frames to redis (keeps 1000 most recent frames on the redis stream)
