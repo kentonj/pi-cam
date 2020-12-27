@@ -22,5 +22,5 @@ class Camera(object):
                 for identifier, payload in messages:
                     frame = payload[b'1']
                     yield self.convert_frame(frame)
-                    # set the starting key to be the last retrieved key, so that when we run out of messages, we start where we left off
-                    starting_key = identifier
+                    # once we run out of frames, set the starting frame to now so that we always stay as up to date as possible with frames
+                    starting_key = f"{int((time.time()) * 1000)}-0"

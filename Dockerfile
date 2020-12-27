@@ -1,8 +1,8 @@
-FROM python:3.9-slim-buster
+FROM python:3.9-buster
 
 RUN apt-get update -y
 RUN apt install libgl1-mesa-glx -y
-RUN apt-get install ffmpeg libsm6 libxext6  -y
+RUN apt-get install ffmpeg libsm6 libxext6 -y
 
 RUN mkdir /pi-cam
 WORKDIR /pi-cam
